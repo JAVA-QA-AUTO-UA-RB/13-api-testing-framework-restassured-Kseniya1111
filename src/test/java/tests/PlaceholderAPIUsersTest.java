@@ -1,6 +1,6 @@
 package tests;
 import io.restassured.response.Response;
-import org.examle.BaseTest;
+import org.example.BaseTest;
 import org.example.helpers.UserApiHelper;
 import org.testng.Assert;
 import org.testng.annotations.Test;

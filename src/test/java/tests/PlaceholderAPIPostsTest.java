@@ -1,6 +1,6 @@
 package tests;
 
-import org.examle.BaseTest;
+import org.example.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.example.helpers.PostApiHelper;

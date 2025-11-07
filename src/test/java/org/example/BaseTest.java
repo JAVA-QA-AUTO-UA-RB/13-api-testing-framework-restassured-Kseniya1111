@@ -1,4 +1,4 @@
-package org.examle;
+package org.example;
 
 import io.restassured.RestAssured;
 import io.restassured.filter.log.LogDetail;
