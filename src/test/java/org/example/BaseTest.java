@@ -1,5 +1,7 @@
 package org.example;
 
+
+
 import io.restassured.RestAssured;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -15,7 +17,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void commonSetup() {
-        if (requestSpec == null) { 
+        if (requestSpec == null) {
             RestAssured.baseURI = BASE_URI;
             RestAssured.filters(
                     new RequestLoggingFilter(LogDetail.ALL),
