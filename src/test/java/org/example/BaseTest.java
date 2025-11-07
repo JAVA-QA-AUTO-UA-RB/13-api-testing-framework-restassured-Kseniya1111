@@ -10,19 +10,22 @@ import org.testng.annotations.BeforeClass;
 import static io.restassured.RestAssured.given;
 
 public class BaseTest {
+
     protected static final String BASE_URI = "https://jsonplaceholder.typicode.com";
-    protected RequestSpecification requestSpec;
+    protected static RequestSpecification requestSpec;
 
-    @BeforeClass
-    public void commonSetup() {
-        RestAssured.baseURI = BASE_URI;
-        RestAssured.filters(
-                new RequestLoggingFilter(LogDetail.ALL),
-                new ResponseLoggingFilter(LogDetail.ALL)
-        );
+    @BeforeClass(alwaysRun = true)
+    public void setup() {
+        if (requestSpec == null) { 
+            RestAssured.baseURI = BASE_URI;
+            RestAssured.filters(
+                    new RequestLoggingFilter(LogDetail.ALL),
+                    new ResponseLoggingFilter(LogDetail.ALL)
+            );
 
-        requestSpec = given()
-                .baseUri(BASE_URI)
-                .header("Content-Type", "application/json");
+            requestSpec = given()
+                    .baseUri(BASE_URI)
+                    .header("Content-Type", "application/json");
+        }
     }
 }
