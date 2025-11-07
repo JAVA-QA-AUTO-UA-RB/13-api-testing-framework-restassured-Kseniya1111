@@ -5,7 +5,7 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 import static io.restassured.RestAssured.given;
 
@@ -13,16 +13,18 @@ public class BaseTest {
     protected static final String BASE_URI = "https://jsonplaceholder.typicode.com";
     protected RequestSpecification requestSpec;
 
-    @BeforeClass
+    @BeforeMethod
     public void commonSetup() {
-        RestAssured.baseURI = BASE_URI;
-        RestAssured.filters(
-                new RequestLoggingFilter(LogDetail.ALL), // Logs all details of the request
-                new ResponseLoggingFilter(LogDetail.ALL) // Logs all details of the response
-        );
+        if (requestSpec == null) { // 
+            RestAssured.baseURI = BASE_URI;
+            RestAssured.filters(
+                    new RequestLoggingFilter(LogDetail.ALL),
+                    new ResponseLoggingFilter(LogDetail.ALL)
+            );
 
-        requestSpec = given()
-                .baseUri(BASE_URI)
-                .header("Content-Type", "application/json");
+            requestSpec = given()
+                    .baseUri(BASE_URI)
+                    .header("Content-Type", "application/json");
+        }
     }
 }
