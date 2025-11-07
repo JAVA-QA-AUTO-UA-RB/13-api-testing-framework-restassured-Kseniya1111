@@ -15,7 +15,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void commonSetup() {
-        if (requestSpec == null) { // 
+        if (requestSpec == null) { 
             RestAssured.baseURI = BASE_URI;
             RestAssured.filters(
                     new RequestLoggingFilter(LogDetail.ALL),
